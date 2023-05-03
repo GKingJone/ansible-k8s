@@ -1,0 +1,21 @@
+#handler只在时候到通知时才会执行，并且他们之间的通知是唯一的  如果多个任务同时通知则只执行一次通知   他们允许您响应整个pb生命周期中的事件  而无需再每个人物中编写编辑  通过将他卸载handlers中您可以重复使用他们，并在需要时轻松添加更多处理程序
+#
+- name: restart sshd
+  systemd:
+    name: sshd
+    state: restarted
+    enabled: yes
+    masked: false
+
+- name: restart chrony
+  systemd:
+    name: chrony
+    state: restarted
+    enabled: yes
+    masked: false
+- name: restart systemd-timesyncd
+  systemd:
+    name: systemd-timesyncd
+    state: restarted
+    enabled: yes
+    masked: false

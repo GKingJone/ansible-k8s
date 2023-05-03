@@ -1,0 +1,18 @@
+---
+#author:zhagn
+- name: "gen calico yml"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - {src: "calico-etcd.yaml.j2", dest: "/tmp/calico-etcd.yaml"}
+  tags: calico
+
+
+- name: "Deploy calico"
+  shell: "kubectl apply -f /tmp/calico-etcd.yaml"
+  #delegate_to是一种将任务委派给特定主机或者组的指令。并且该任务的的结果会被返回到控制机器上
+  delegate_to: "{{ groups['master'][0] }}"
+  #run_once用于确保任务只在任何一个目标主机上执行一次的指令
+  run_once: true
+  tags: calico

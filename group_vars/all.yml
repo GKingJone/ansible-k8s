@@ -1,0 +1,156 @@
+#k8s cert
+cert:
+  #签发集群证书保存目录，默认保存十年
+  dir: /opt/certs
+  #签发证书大小
+  size: 2048
+  #签发证书时间
+  day: 3650d
+
+#etcd
+etcd:
+  #etcd 安装包下载地址
+  download_url: https://ghproxy.com/https://github.com/etcd-io/etcd/releases/download
+  version: v3.5.7
+  data_dir: "/var/lib/etcd"
+
+
+
+
+#高可用 
+#使用haproxy+keepalived请填写vip及端口
+#
+#
+#
+loadbalance:
+  ip: 10.0.0.200
+  port: 6499
+ 
+
+
+
+kubernetes:
+  #k8s 二进制安装包下载地址  ，默认是艾丽云从ggoogle同步过来的镜像
+  download_url: https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release
+  version: v1.26.1
+  #集群pod网段
+  podSubnet: 10.64.0.0/12
+  #集群service网段
+  serviceSubnet: 192.168.0.0/16
+  #data dir
+  kubelet_dir: "/var/lib/kubelet"
+  #配置kube-proxy的ipvs调度策略  支持rr(轮训)wrr（加权轮训）lc(最新少连接数) sh（源地址哈希）  dh(目标地址哈希)   sed(最短预期延迟)  nq(最少队列)
+  scheduler: rr
+  
+
+#container runtime
+runc:
+  download_url: https://ghproxy.com/https://github.com/opencontainers/runc/releases/download
+  version: v1.1.4
+
+
+cniplugins:
+  #cni-plugins安装包地址、
+  download_url: https://ghproxy.com/https://github.com/containernetworking/plugins/releases/download
+  version: v1.2.0
+
+
+critools:
+  download_url: https://ghproxy.com/https://github.com/kubernetes-sigs/cri-tools/releases/download
+  version: v1.26.0
+
+
+containerd:
+  download_url: https://ghproxy.com/https://github.com/containerd/containerd/releases/download
+  version: v1.6.16
+  #containerd持久化数据目录  
+  root: "/var/lib/containerd"
+  #临时数据目录
+  state: "/run/containerd"
+  oom_score: -999
+  grpc:
+    max_recv_message_size: 16777216
+    max_send_message_size: 16777216
+  debug:
+    level: ""
+  metrics:
+    address: ""
+    grpc_histogram: false
+  cri:
+    sandbox_image: "registry.aliyuncs.com/google_containers/pause:3.7"
+    max_container_log_line_size: -1
+  containerd:
+    snapshotter: overlayfs
+  options:
+    SystemdCgroup: true
+  registries:
+    "docker.io": "https://registry-1.docker.io"
+    "k8s.gcr.io": "https://k8s-gcr-io.mirrors.sjtug.sjtu.edu.cn"
+
+#network plugin
+network_plugin: calico
+
+
+cilium:
+  version: v1.12.6
+  registry: dockerproxy.com/cilium
+  network_mode: vxlan
+
+
+
+
+
+
+flannel:
+  version: v0.21.0
+  # {{flannel.registry}}/flannel-cni-plugin:v1.0.1
+  #   # {{flannel.registry}}/flannel:{{flannel.version}}
+  registry: dockerproxy.com/flannelcni
+  #       # "vxlan" or "host-gw"
+  network_mode: vxlan
+
+
+
+
+calico:
+  version: v3.24.5
+  registry: dockerproxy.com/calico
+  network_mode: ipip
+  #mtu默认为0    表示自动检测
+  mtu: 0
+  #可指定网卡或使用can-reach=网管
+  ip_autodetection_method: interface=eth0
+
+
+
+#addons
+helm:
+  enabled: true
+  download_url: https://mirrors.huaweicloud.com/helm
+  version: v3.9.4
+coredns:
+  version: 1.9.3
+  # {{coredns.registry}}/coredns:{{coredns.version}}
+  registry: dockerproxy.com/coredns
+
+
+nodelocaldns:
+  enabled: true
+  version: 1.22.13
+  registry: k8s.dockerproxy.com/dns
+  ip: 169.254.20.10
+metrics_server:
+  enabled: true
+  version: v0.6.2
+  registry: k8s.dockerproxy.com/metrics-server
+#nvidia这里我没配置
+#
+#等后面需要在配置
+#
+#
+
+  
+
+
+
+

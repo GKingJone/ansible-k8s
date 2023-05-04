@@ -1,0 +1,32 @@
+#author zhang
+
+#etcd group
+[etcd]
+10.0.0.188 hostname=master-01
+10.0.0.189 hostname=master-02
+10.0.0.190 hostname=master-03
+
+
+[haproxy]
+
+10.0.0.188 hostname=master-01 type=MASTER priority=100
+10.0.0.189 hostname=master-02 type=BACKUP priority=90
+
+
+
+[master]
+
+10.0.0.188 hostname=master-01
+10.0.0.189 hostname=master-02
+10.0.0.190 hostname=master-03
+
+
+[worker]
+
+10.0.0.191 hostname=worker-03 gpu=false
+
+
+
+
+
+

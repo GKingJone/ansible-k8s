@@ -1,0 +1,24 @@
+---
+#author:zhang
+
+- name: "install keepalived"
+  package:
+    name: keepalived
+    state: present
+    
+- name: "gen keepalived.conf"
+  template:
+    src: "keepalived.conf.j2"
+    dest: "/etc/keepalived/keepalived.conf"
+  notify:
+    - restart keepalived
+
+
+
+- name: "gen check_haproxy.sh"
+  template:
+    src: "check_haproxy.sh.j2"
+    dest: "/etc/keepalived/check_haproxy.sh"
+    mode: 0777
+  notify:
+    - restart keepalived

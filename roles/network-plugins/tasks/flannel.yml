@@ -3,8 +3,8 @@
 
 - name: "Generate flannel yaml"
   template:
-    src: "{{item.src}}"
-    dest: "{{item.dest}}"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   with_items:
     - {src: "flannel.yaml.j2", dest: "/tmp/flannel.yaml"}
   tags: flannel

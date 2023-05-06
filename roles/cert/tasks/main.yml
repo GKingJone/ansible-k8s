@@ -222,6 +222,8 @@
     ownca_not_after: "+{{cert.day}}"
     #ownca_create_subject_key_identifier: never_create
     #ownca_create_authority_key_identifier: no
+    #ownca_create_subject_key_identifier: never_create
+    #ownca_create_authority_key_identifier: no
     privatekey_path: "{{ cert.dir }}/{{ item }}/apiserver-etcd-client.key"
     csr_path: "{{ cert.dir }}/{{ item }}/apiserver-etcd-client.csr"
     ownca_path: "{{ cert.dir }}/etcd-ca.pem"

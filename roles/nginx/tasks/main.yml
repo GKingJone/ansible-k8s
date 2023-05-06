@@ -1,0 +1,61 @@
+---
+#author:zhang
+
+
+- name: download
+  unarchive:
+    src: "http://mirrors.sohu.com/nginx/nginx-1.9.6.tar.gz"
+    dest: /tmp
+    remote_src: yes
+
+
+- name: install nginx
+  package:
+    name:
+      - gcc
+      - gcc-c++
+      - pcre-devel
+      - zlib-devel
+      - openssl-devel
+
+
+- name: configure
+  shell: |
+    cd /tmp/nginx*
+    ./configure --prefix=/usr/local/nginx
+
+
+
+- name: copy configfile
+  template:
+    src: "nginx.j2"
+    dest: /etc/init.d/nginx
+  tags: install_nginx
+
+
+- name: make&&make install
+  shell: |
+    cd /tmp/nginx*
+    make && make install
+- name: clean
+  shell: rm -rf /usr/local/nginx/conf/nginx.conf
+
+- name: template nginx.conf
+  template:
+    src: "nginx.conf.j2"
+    dest: /usr/local/nginx/conf/nginx.conf
+
+
+
+- name: permit
+  shell: |
+    chmod 777 /etc/init.d/nginx
+
+- name: systemctl
+  systemd:
+    name: nginx
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    masked: false
+  register: nginx_restarted

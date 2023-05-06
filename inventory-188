@@ -1,0 +1,8 @@
+#author zhang
+
+#etcd group
+[nginx]
+10.0.0.188 hostname=master-01
+
+
+

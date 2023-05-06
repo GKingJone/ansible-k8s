@@ -10,7 +10,8 @@ cert:
 #etcd
 etcd:
   #etcd 安装包下载地址
-  download_url: https://ghproxy.com/https://github.com/etcd-io/etcd/releases/download
+  #download_url: https://ghproxy.com/https://github.com/etcd-io/etcd/releases/download
+  download_url: http://10.0.0.188/download
   version: v3.5.7
   data_dir: "/var/lib/etcd"
 
@@ -31,7 +32,8 @@ loadbalance:
 
 kubernetes:
   #k8s 二进制安装包下载地址  ，默认是艾丽云从ggoogle同步过来的镜像
-  download_url: https://storage.googleapis.com/kubernetes-release/release
+  download_url: http://10.0.0.188/download
+  #download_url: https://storage.googleapis.com/kubernetes-release/release
   #https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release
   version: v1.26.1
   #集群pod网段
@@ -46,23 +48,27 @@ kubernetes:
 
 #container runtime
 runc:
-  download_url: https://ghproxy.com/https://github.com/opencontainers/runc/releases/download
+  download_url: http://10.0.0.188/download
+  #download_url: https://ghproxy.com/https://github.com/opencontainers/runc/releases/download
   version: v1.1.4
 
 
 cniplugins:
   #cni-plugins安装包地址、
-  download_url: https://ghproxy.com/https://github.com/containernetworking/plugins/releases/download
+  download_url: http://10.0.0.188/download
+  #download_url: https://ghproxy.com/https://github.com/containernetworking/plugins/releases/download
   version: v1.2.0
 
 
 critools:
-  download_url: https://ghproxy.com/https://github.com/kubernetes-sigs/cri-tools/releases/download
+  download_url: http://10.0.0.188/download
+  #download_url: https://ghproxy.com/https://github.com/kubernetes-sigs/cri-tools/releases/download
   version: v1.26.0
 
 
 containerd:
-  download_url: https://github.com/containerd/containerd/releases/download
+  download_url: http://10.0.0.188/download
+  #download_url: https://github.com/containerd/containerd/releases/download
   #https://ghproxy.com/https://github.com/containerd/containerd/releases/download
   version: 1.6.16
   #containerd持久化数据目录  
@@ -128,7 +134,8 @@ calico:
 #addons
 helm:
   enabled: true
-  download_url: https://mirrors.huaweicloud.com/helm
+  download_url: http://10.0.0.188/download
+  #download_url: https://mirrors.huaweicloud.com/helm
   version: v3.9.4
 coredns:
   version: 1.9.3

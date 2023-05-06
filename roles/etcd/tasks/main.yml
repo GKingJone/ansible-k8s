@@ -22,7 +22,7 @@
 
 - name: "download etcd"
   unarchive:
-    src: "{{ etcd.download_url }}/{{ etcd.version }}/etcd-{{ etcd.version }}-linux-amd64.tar.gz"
+    src: "{{ etcd.download_url }}/etcd-{{ etcd.version }}-linux-amd64.tar.gz"
     dest: /tmp/
     #remote_src是一个布尔值参数，用于指定模板源文件是否在远程主机上，而不是在控制节点上，即运行ansible的机器，为true则将在目标主机上查找源文件而不是在控制机上
     remote_src: yes

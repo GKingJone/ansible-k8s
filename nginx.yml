@@ -1,0 +1,6 @@
+---
+- name: "nginx"
+  hosts: nginx
+  roles:
+    - role: nginx
+      tags: nginx

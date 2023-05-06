@@ -26,7 +26,7 @@
 
 - import_tasks: flannel.yml
   when:
-    - network-plugin == "flannel"
+    - network_plugin == "flannel"
   tags:
     - flannel
 

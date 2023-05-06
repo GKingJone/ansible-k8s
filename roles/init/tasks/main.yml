@@ -80,7 +80,7 @@
 
 - name: "get firewalld is installed"
 
-  command: whereis ffirewalld
+  command: whereis firewalld
   register: firewalld_state
 
 
